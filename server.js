@@ -113,7 +113,7 @@ async function summarize(text, style) {
 const app = express();
 app.set('trust proxy', 1);
 app.use(helmet());
-app.use(cors({ origin: (o, cb) => (!o || ORIGINS.includes(o) ? cb(null, true) : cb(new Error('CORS blocked'))) }));
+   app.use(cors());
 app.use(express.json({ limit: '2mb' }));
 app.use('/api/', rateLimit({ windowMs: 60_000, limit: 15, standardHeaders: true, legacyHeaders: false,
   message: { error: 'Too many requests. Please wait a minute and try again.' } }));
